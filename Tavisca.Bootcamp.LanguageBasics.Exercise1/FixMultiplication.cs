@@ -9,9 +9,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
     {
         public static int FindDigit(string equation)
         {
-
             string[] fields = Regex.Split(equation, pattern: "[*=]");
-
             var culpritField = 0;
             for (int index = 0; index < 3; index++)
             {

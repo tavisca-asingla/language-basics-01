@@ -19,10 +19,6 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
         {
             var result = FixMultiplication.FindDigit(args).Equals(expected) ? "PASS" : "FAIL";
             Console.WriteLine($"{args} : {result}");
-        }
-
-        
-    }
-
-   
+        }        
+    }    
 }
