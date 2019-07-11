@@ -10,46 +10,51 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
         public static int FindDigit(string equation)
         {
 
-            string[] vari = Regex.Split(equation, pattern: "[*=]");
+            string[] fields = Regex.Split(equation, pattern: "[*=]");
 
-            var culp = 0;
-            for (int i = 0; i < 3; i++)
+            var culpritField = 0;
+            for (int index = 0; index < 3; index++)
             {
-                if (vari[i].Contains('?'))
+                if (fields[index].Contains('?'))
                 {
-                    culp = i;
+                    culpritField = index;
                     break;
                 }
             }
-            string res;
-            int A, B, C;
-            if (culp == 0)
+            string result;
+            int operand1, operand2, operand3;
+            if (culpritField == 0)
             {
-                B = Int32.Parse(vari[1]);
-                C = Int32.Parse(vari[2]);
-                A = (C / B);
-                res = A.ToString();
+                operand2 = Int32.Parse(fields[1]);
+                operand3 = Int32.Parse(fields[2]);
+                operand1 = (operand3 / operand2);
+                result = operand1.ToString();
             }
-            else if (culp == 1)
+            else if (culpritField == 1)
             {
-                A = Int32.Parse(vari[0]);
-                C = Int32.Parse(vari[2]);
-                B = (C / A);
-                res = B.ToString();
+                operand1 = Int32.Parse(fields[0]);
+                operand3 = Int32.Parse(fields[2]);
+                operand2 = (operand3 / operand1);
+                result = operand2.ToString();
             }
             else
             {
-                A = Int32.Parse(vari[0]);
-                B = Int32.Parse(vari[1]);
-                C = A * B;
-                res = C.ToString();
+                operand1 = Int32.Parse(fields[0]);
+                operand2 = Int32.Parse(fields[1]);
+                operand3 = operand1 * operand2;
+                result = operand3.ToString();
             }
-            if ((res.Length != vari[culp].Length) || A * B != C)
+            /*
+            if the given equation is not possible to occur return -1
+            This means this problem does not have a valid solution if operand1 * operand2 != operand3  or 
+            if culpritfield length is not equal to resultfield length (See Test Case 4)
+            */
+            if ((result.Length != fields[culpritField].Length) || operand1 * operand2 != operand3)
             {
                 return -1;
             }
-            int pos = vari[culp].IndexOf('?');
-            return (int)Char.GetNumericValue(res[pos]);
+            int position = fields[culpritField].IndexOf('?');
+            return (int)Char.GetNumericValue(result[position]);
         }
     }
 }
